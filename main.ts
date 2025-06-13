@@ -56,4 +56,3 @@ basic.forever(function () {
 
     basic.pause(10)
 })
-
