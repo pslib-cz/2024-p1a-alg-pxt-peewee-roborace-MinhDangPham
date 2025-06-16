@@ -1,3 +1,17 @@
+
+radio.setGroup(61)
+
+let start = false
+
+radio.onReceivedString(function (received: string) {
+    if (received == "start") {
+        start = true
+    } else if (received == "stop") {
+        start = false
+        stop()
+    }
+})
+
 type IRC = {
     l: DigitalPin,
     c: DigitalPin,
@@ -8,24 +22,20 @@ const IR: IRC = {
     c: DigitalPin.P13,
     r: DigitalPin.P12
 }
+
 pins.setPull(IR.l, PinPullMode.PullNone);
 pins.setPull(IR.c, PinPullMode.PullNone);
 pins.setPull(IR.r, PinPullMode.PullNone);
+
 basic.forever(function () {
     let left = pins.digitalReadPin(IR.l)
     let center = pins.digitalReadPin(IR.c)
     let right = pins.digitalReadPin(IR.r)
 })
-/*
-radio.setGroup(61)
-let rychlost: number = -100
-radio.onReceivedValue(function(name: "speed", speed) {
-    rychlost = speed
-})
-*/
+
 function forward() {
-    PCAmotor.MotorRun(PCAmotor.Motors.M1, -120)
-    PCAmotor.MotorRun(PCAmotor.Motors.M4, -120)
+    PCAmotor.MotorRun(PCAmotor.Motors.M1, -170)
+    PCAmotor.MotorRun(PCAmotor.Motors.M4, -170)
 }
 function turnLeft() {
     PCAmotor.MotorRun(PCAmotor.Motors.M1, -100)
