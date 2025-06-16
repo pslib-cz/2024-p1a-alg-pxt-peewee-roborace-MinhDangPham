@@ -34,11 +34,11 @@ function forward() {
 
 function turnLeft() {
     PCAmotor.MotorRun(PCAmotor.Motors.M1, -100)
-    PCAmotor.MotorRun(PCAmotor.Motors.M4, -50)
+    PCAmotor.MotorRun(PCAmotor.Motors.M4, -40)
 }
 
 function turnRight() {
-    PCAmotor.MotorRun(PCAmotor.Motors.M1, -50)
+    PCAmotor.MotorRun(PCAmotor.Motors.M1, -40)
     PCAmotor.MotorRun(PCAmotor.Motors.M4, -100)
 }
 
@@ -52,7 +52,7 @@ basic.forever(function () {
         let center = pins.digitalReadPin(IR.c)
         let right = pins.digitalReadPin(IR.r)
 
-        if (center == 0 && left == 1 && right == 1) {
+        if ((center == 0 && left == 1 && right == 1) || (center == 1 && left == 1 && right == 1)) {
             forward()
         } else if (left == 0) {
             turnLeft()
