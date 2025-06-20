@@ -3,9 +3,9 @@ radio.setGroup(61)
 let start = false
 
 radio.onReceivedString(function (received: string) {
-    if (received == "start") {
+    if (received === "start") {
         start = true
-    } else if (received == "stop") {
+    } else if (received === "stop") {
         start = false
         stop()
     }
@@ -52,11 +52,11 @@ basic.forever(function () {
         let center = pins.digitalReadPin(IR.c)
         let right = pins.digitalReadPin(IR.r)
 
-        if ((center == 0 && left == 1 && right == 1) || (center == 1 && left == 1 && right == 1)) {
+        if ((center === 0 && left === 1 && right === 1) || (center === 1 && left === 1 && right === 1)) {
             forward()
-        } else if (left == 0) {
+        } else if (left === 0) {
             turnLeft()
-        } else if (right == 0) {
+        } else if (right === 0) {
             turnRight()
         } else {
             stop()
